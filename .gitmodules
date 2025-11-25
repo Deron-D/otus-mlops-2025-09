@@ -1,0 +1,4 @@
+[submodule "hw02/mlops-otus-practice-cloud-infra"]
+	path = hw02/mlops-otus-practice-cloud-infra
+	url = git@github.com:Deron-D/mlops-otus-practice-cloud-infra.git
+	branch = hw02
