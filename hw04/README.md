@@ -28,7 +28,8 @@
 ![img_1.png](img_1.png)
 
 3. Ноутбук, в котором делается запрос к этим Feature View
-[otus-feature-store/hw04.ipynb](otus-feature-store/hw04.ipynb)
+[otus-feature-store/hw04.ipynb](https://github.com/Deron-D/otus-feature-store/blob/db1abeec0d114241c63aab765cdba304bcb4f28e/hw04.ipynb)
+
 ---
 ### Полезное
 
