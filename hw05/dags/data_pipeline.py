@@ -145,14 +145,24 @@ with DAG(
     # 2 этап: запуск задания PySpark
     poke_spark_processing = DataprocCreatePysparkJobOperator(
         task_id="dp-cluster-pyspark-task",
+        cluster_id="{{ ti.xcom_pull(task_ids='dp-cluster-create-task') }}",
         main_python_file_uri=f"s3a://{S3_SRC_BUCKET}/src/pyspark_script.py",
+        args=[
+            '--bucket', S3_BUCKET_NAME,
+        ],
+        properties={
+            "spark.hadoop.fs.s3a.endpoint": S3_ENDPOINT_URL,
+            "spark.hadoop.fs.s3a.access.key": S3_ACCESS_KEY,
+            "spark.hadoop.fs.s3a.secret.key": S3_SECRET_KEY,
+            "spark.hadoop.fs.s3a.path.style.access": "true",
+        },
         connection_id=YC_SA_CONNECTION.conn_id,
-        args=["--bucket", S3_BUCKET_NAME],
         dag=dag,
     )
     # 3 этап: удаление Dataproc кластера
     delete_spark_cluster = DataprocDeleteClusterOperator(
         task_id="dp-cluster-delete-task",
+        cluster_id="{{ ti.xcom_pull(task_ids='dp-cluster-create-task') }}",
         trigger_rule=TriggerRule.ALL_DONE,
         dag=dag,
     )
