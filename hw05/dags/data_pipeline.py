@@ -100,7 +100,7 @@ def run_setup_connections(**kwargs): # pylint: disable=unused-argument
 # Настройки DAG
 with DAG(
     dag_id="data_pipeline",
-    start_date=datetime(year=2025, month=6, day=10),
+    start_date=datetime(year=2026, month=1, day=13),
     schedule_interval=timedelta(minutes=60),
     catchup=False
 ) as dag:
